@@ -82,15 +82,25 @@ public class MiniLab {
         }
         System.out.println("\t=================================");
     }
+    boolean exit(){
+        String wish;
+        System.out.print("Do you want to add a new device?");
+        wish=sc.nextLine();
+        System.out.println();
+        if (!wish.equalsIgnoreCase("yes")){
+            return false;
+        }
+        return true;
+    }
 
 
     public static void main(String[] args) {
         MiniLab lab = new MiniLab();
-        lab.addDevice();
-        lab.trackSuspicious();
-        System.out.println("\t----------------");
-        lab.addDevice();
-        lab.trackSuspicious();
+        while(lab.exit()) {
+            lab.addDevice();
+            lab.trackSuspicious();
+            System.out.println("\t----------------");
+        }
         lab.printDevice();
 
     }
