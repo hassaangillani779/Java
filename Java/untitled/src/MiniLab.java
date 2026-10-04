@@ -18,7 +18,12 @@ public class MiniLab {
         String yes;
         System.out.print("Enter the name of new device: ");
         name = sc.nextLine();
-        System.out.println();
+        while (!isValidName(name)){
+            System.out.print("Invalid name! Please try again...");
+            System.out.println();
+            System.out.print("Enter the name of the new device: ");
+            name=sc.nextLine();
+        }
         System.out.print("Enter the IP address: ");
         ip=sc.nextLine();
         while(!isValidIP(ip)){
@@ -50,6 +55,16 @@ public class MiniLab {
             } catch (NumberFormatException e) {
                 return false;
             }
+        }
+        return true;
+    }
+
+    boolean isValidName(String name){
+        if (name.isBlank()){
+            return false;
+        }
+        if(name.length()>50){
+            return false;
         }
         return true;
     }
