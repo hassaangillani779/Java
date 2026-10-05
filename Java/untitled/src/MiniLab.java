@@ -1,21 +1,26 @@
 import java.util.*;
 public class MiniLab {
-    static final String Suspicious="234.43";
+    //Chose a spefic subnet mask to be flagged
+    static final String SUSPICIOUS="234.43.";
+    //Assigned 50 as the maximum length for device name
+    static final int LENGTH=50;
     Scanner sc = new Scanner(System.in);
     ArrayList<Device> deviceList = new ArrayList<>();
 
+    //Tracks Suspicious predefined Ip
     void trackSuspicious() {
         for (Device e : deviceList) {
-            if (e.getIp().startsWith(Suspicious)) {
+            if (e.getIp().startsWith(SUSPICIOUS)) {
                 e.flag();
             }
         }
     }
 
+    //Adds new device in the arraylist
     void addDevice() {
         String name;
         String ip;
-        String yes;
+        String IsIt;
         System.out.print("Enter the name of new device: ");
         name = sc.nextLine();
         while (!isValidName(name)){
@@ -26,6 +31,7 @@ public class MiniLab {
         }
         System.out.print("Enter the IP address: ");
         ip=sc.nextLine();
+        //Is ip address in the true format
         while(!isValidIP(ip)){
             System.out.print("Invalid IP! Please try again...");
             System.out.println();
@@ -34,14 +40,16 @@ public class MiniLab {
         }
         System.out.println();
         System.out.print("Has the device been breached before(Yes/No): ");
-        yes = sc.nextLine();
+        IsIt = sc.nextLine();
         Device newDevice = new Device(name, ip);
-        if (yes.equalsIgnoreCase("yes")) {
+        //Check if the device was breached before
+        if (IsIt.equalsIgnoreCase("yes")) {
             newDevice.flag();
         }
         deviceList.add(newDevice);
     }
 
+    //IP validation method
     boolean isValidIP(String ip){
         String[] parts= ip.split("\\.");
         if (parts.length!=4){
@@ -50,8 +58,9 @@ public class MiniLab {
         for (String p : parts){
             try {
                 int n=Integer.parseInt(p);
-                if(n<0 || n>255)
+                if(n<0 || n>255) {
                     return false;
+                }
             } catch (NumberFormatException e) {
                 return false;
             }
@@ -59,16 +68,18 @@ public class MiniLab {
         return true;
     }
 
+    //Name validation method
     boolean isValidName(String name){
         if (name.isBlank()){
             return false;
         }
-        if(name.length()>50){
+        if(name.length()>LENGTH){
             return false;
         }
         return true;
     }
 
+    //Display method
     void printDevice() {
         for (Device e : deviceList) {
             System.out.println("\t========Device Details========");
@@ -82,9 +93,11 @@ public class MiniLab {
         }
         System.out.println("\t=================================");
     }
-    boolean exit(){
+
+    //If the user wants to exit or add more devices
+    boolean stay(){
         String wish;
-        System.out.print("Do you want to add a new device?");
+        System.out.print("Do you want to add a new device? ");
         wish=sc.nextLine();
         System.out.println();
         if (!wish.equalsIgnoreCase("yes")){
@@ -96,7 +109,7 @@ public class MiniLab {
 
     public static void main(String[] args) {
         MiniLab lab = new MiniLab();
-        while(lab.exit()) {
+        while(lab.stay()) {
             lab.addDevice();
             lab.trackSuspicious();
             System.out.println("\t----------------");
@@ -106,6 +119,7 @@ public class MiniLab {
     }
 }
 
+//A class with protected data
 class Device{
     private String name;
     private String ip;
