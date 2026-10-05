@@ -23,6 +23,7 @@ public class MiniLab {
         String IsIt;
         System.out.print("Enter the name of new device: ");
         name = sc.nextLine();
+        // Running Loop to validate Name
         while (!isValidName(name)){
             System.out.print("Invalid name! Please try again...");
             System.out.println();
