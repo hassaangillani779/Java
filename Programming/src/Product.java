@@ -98,6 +98,6 @@ class ProductManagement {
         search(products, searchName);
 
         input.close();
-        //Need to understand
+
     }
 }
