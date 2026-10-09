@@ -93,9 +93,7 @@ class ProductManagement {
         // searching by name
         input.nextLine(); // clears newline again before reading a string
         System.out.print("Enter product name to search: ");
-        String searchName = input.nextLine();
 
-        search(products, searchName);
 
 
 
