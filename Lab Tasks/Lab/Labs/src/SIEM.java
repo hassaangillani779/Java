@@ -1,8 +1,18 @@
+import java.util.*;
 public class SIEM {
     int ID;
     String IP;
+
+
 }
 class failedLogin extends SIEM{
-    int severityScore;
+    int LoginseverityScore;
 
+}
+class portScan extends SIEM{
+    int PortseverityScore;
+
+}
+class malwareAlert extends SIEM{
+    int MalwareseverityScore;
 }
