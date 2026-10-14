@@ -7,16 +7,5 @@ public class SIEM {
         this.ID=sc.nextInt();
         this.IP=sc.nextLine();
     }
-    void severityScore()
-}
-class failedLogin extends SIEM{
-    int LoginseverityScore;
 
-}
-class portScan extends SIEM{
-    int PortseverityScore;
-
-}
-class malwareAlert extends SIEM{
-    int MalwareseverityScore;
 }
