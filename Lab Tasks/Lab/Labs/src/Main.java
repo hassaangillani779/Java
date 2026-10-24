@@ -4,7 +4,7 @@ class Event {
     private int ID;
     private String IP;
     String getLabel(){
-        if (calcSeverity()>70){
+        if (calcSeverity()>=70){
             return "HIGH";
         }else if(calcSeverity()>=40){
             return "MEDIUM";
@@ -85,12 +85,21 @@ class MalwareAlert extends Event{
 public class Main{
     public static void main(String[] args){
         Scanner sc=new Scanner(System.in);
-        ArrayList <Event> e1= new ArrayList<>();
-        e1.add(new FailedLogin(75,"598.43.53",76));
-        e1.add(new PortsScanned(980,"897.98.45.7",578));
-        e1.add(new MalwareAlert(45,"23.43.53.4",false));
+        ArrayList <Event> events= new ArrayList<>();
+        events.add(new FailedLogin(75,"598.43.53",76));
+        events.add(new PortsScanned(980,"897.98.45.7",578));
+        events.add(new MalwareAlert(45,"23.43.53.4",false));
 
-        for (Event e : e1) {
+        int bestScore=0;
+        int bestIndex=0;
+        for(int i=0; i<events.size(); i++){
+          if(events.get(i).calcSeverity()>bestScore){
+              bestScore=events.get(i).calcSeverity();
+              bestIndex=i;
+          }
+        }
+
+        for (Event e : events) {
             System.out.println(e.getID() + " " + e.getIP() + " " + e.calcSeverity() + " " + e.getLabel());
         }
 
