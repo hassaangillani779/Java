@@ -86,6 +86,13 @@ public class Main{
     public static void main(String[] args){
         Scanner sc=new Scanner(System.in);
         ArrayList <Event> e1= new ArrayList<>();
+        e1.add(new FailedLogin(75,"598.43.53",76));
+        e1.add(new PortsScanned(980,"897.98.45.7",578));
+        e1.add(new MalwareAlert(45,"23.43.53.4",false));
+
+        for (Event e : e1) {
+            System.out.println(e.getID() + " " + e.getIP() + " " + e.calcSeverity() + " " + e.getLabel());
+        }
 
 
     }
