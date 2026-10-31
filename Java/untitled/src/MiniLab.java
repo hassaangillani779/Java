@@ -5,7 +5,7 @@ public class MiniLab {
     //Assigned 50 as the maximum length for device name
     static final int LENGTH=50;
     Scanner sc = new Scanner(System.in);
-
+    ArrayList<Device> deviceList = new ArrayList<>();
 
     //Tracks Suspicious predefined Ip
     void trackSuspicious() {
