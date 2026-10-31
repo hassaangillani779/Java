@@ -1,8 +1,41 @@
 import java.util.Scanner;
-import java.util.ArrayList;
+
 class Event {
+    Scanner sc= new Scanner(System.in);
     private int ID;
     private String IP;
+
+    //Getters
+    int getID(){
+        return ID;
+    }
+    String getIP(){
+        return IP;
+    }
+
+    //Constructor
+    Event(int ID,String IP){
+        this.ID=ID;
+        this.IP=IP;
+    }
+
+    //Setters
+
+    public void setID(int ID) {
+        System.out.println("Enter ID: ");
+        ID=sc.nextInt();
+        this.ID = ID;
+
+    }
+
+    public void setIP(String IP) {
+
+        this.IP = IP;
+    }
+
+
+
+    //Labeling the Severity
     String getLabel(){
         if (calcSeverity()>=70){
             return "HIGH";
@@ -11,21 +44,15 @@ class Event {
         }
         return "LOW";
     }
-    int getID(){
-        return ID;
-    }
-    String getIP(){
-        return IP;
-    }
-    Event(int ID,String IP){
-        this.ID=ID;
-        this.IP=IP;
-    }
+
+    //Severity Calculation
     int calcSeverity(){
         return 0;
     }
 
 }
+
+//Login Attempts
 class FailedLogin extends Event{
     private int attempts;
     int getAttempts(){
@@ -45,6 +72,8 @@ class FailedLogin extends Event{
             return score;
     }
 }
+
+//Port Scanning Class
 class PortsScanned extends Event{
     private int portsScanned;
     int getPortsScanned(){
@@ -63,6 +92,8 @@ class PortsScanned extends Event{
             return score;
     }
 }
+
+//Malware Alert
 class MalwareAlert extends Event{
     private boolean Spreading;
     boolean isSpreading(){
@@ -85,19 +116,8 @@ class MalwareAlert extends Event{
 public class Main{
     public static void main(String[] args){
         Scanner sc=new Scanner(System.in);
-        ArrayList <Event> events= new ArrayList<>();
-        events.add(new FailedLogin(75,"598.43.53",76));
-        events.add(new PortsScanned(980,"897.98.45.7",578));
-        events.add(new MalwareAlert(45,"23.43.53.4",false));
+        Event[] events= new Event[67];
 
-        int bestScore=0;
-        int bestIndex=0;
-        for(int i=0; i<events.size(); i++){
-          if(events.get(i).calcSeverity()>bestScore){
-              bestScore=events.get(i).calcSeverity();
-              bestIndex=i;
-          }
-        }
 
         for (Event e : events) {
             System.out.println(e.getID() + " " + e.getIP() + " " + e.calcSeverity() + " " + e.getLabel());
