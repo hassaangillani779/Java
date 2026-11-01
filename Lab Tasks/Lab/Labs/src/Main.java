@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
-class Event {
-    Scanner sc= new Scanner(System.in);
+class Event extends Object {
+
     private int ID;
     private String IP;
 
@@ -18,22 +18,6 @@ class Event {
         this.ID=ID;
         this.IP=IP;
     }
-
-    //Setters
-
-    public void setID(int ID) {
-        System.out.println("Enter ID: ");
-        ID=sc.nextInt();
-        this.ID = ID;
-
-    }
-
-    public void setIP(String IP) {
-
-        this.IP = IP;
-    }
-
-
 
     //Labeling the Severity
     String getLabel(){
@@ -116,12 +100,7 @@ class MalwareAlert extends Event{
 public class Main{
     public static void main(String[] args){
         Scanner sc=new Scanner(System.in);
-        Event[] events= new Event[67];
-
-
-        for (Event e : events) {
-            System.out.println(e.getID() + " " + e.getIP() + " " + e.calcSeverity() + " " + e.getLabel());
-        }
+        Event[] events= new Event[3];
 
 
     }
